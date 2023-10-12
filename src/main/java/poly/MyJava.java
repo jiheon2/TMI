@@ -2,6 +2,6 @@ package poly;
 
 public class MyJava {
     public static void myFunction(){
-        int a = 1000;
+        int a = 100;
     }
 }
