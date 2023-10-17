@@ -1,0 +1,10 @@
+applications:
+  name: kopo32App
+  memory: 2048M
+  path:
+  buildpack: paketo-buildpacks/java
+  env:
+    JAVA_TOOL_OPTIONS: -Djava.security.egd=file:///dev/urandom
+    BP-JVM-VERSION: 8
+    BP_SPRING_CLOUD_BINDINGS_DISABLED: true
+    server_port: 8080

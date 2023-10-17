@@ -8,7 +8,6 @@ import lombok.Setter;
 public class TraderDTO {
     private String businessNum;
     private String shopCode;
-    private String socialNum;
     private String name;
     private String pn;
     private String id;
