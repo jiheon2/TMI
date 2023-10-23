@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- JAVA와 연결할 Mapper 파일 설정 -->
+<mapper namespace="java.poly.persistance.mapper.ITraderMapper">
+
+    <select id="getTraderIdExists" parameterType="TraderDTO" resultType="TraderDTO">
+    SELECT DECODE(COUNT(1), 0, 'N', 'Y') AS EXISTS_YN
+    FROM TRADER
+    WHERE TID = #{id}
+    </select>
+
+    <insert id="insertTraderInfo" parameterType="TraderDTO">
+        INSERT INTO TRADER (TNAME, TAGE, TNUM, TID, TPW, TTYPE)
+        VALUES (#{userId}, #{userName}, #{password}, #{email}, #{addr1}, #{addr2}, #{userId}, SYSDATE, #{userId}, SYSDATE)
+    </insert>
+
+</mapper>
