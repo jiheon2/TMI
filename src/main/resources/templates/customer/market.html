@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="zxx">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>aranoz</title>
+    <link rel="icon" href="/images/favicon.png">
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="/assets/css/bootstrap.min.css">
+    <!-- animate CSS -->
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    <!-- owl carousel CSS -->
+    <link rel="stylesheet" href="/assets/css/owl.carousel.min.css">
+    <!-- nice select CSS -->
+    <link rel="stylesheet" href="/assets/css/nice-select.css">
+    <!-- font awesome CSS -->
+    <link rel="stylesheet" href="/assets/css/font.css">
+    <!-- flaticon CSS -->
+    <link rel="stylesheet" href="/assets/css/flaticon.css">
+    <link rel="stylesheet" href="/assets/css/themify-icons.css">
+    <!-- swiper CSS -->
+    <link rel="stylesheet" href="/assets/css/slick.css">
+    <link rel="stylesheet" href="/assets/css/price_rangs.css">
+    <!-- style CSS -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+    <script src="/assets/js/jquery-3.6.0.min.js"></script>
+
+    <script th:inline="javascript">
+        document.addEventListener("DOMContentLoaded", function() {
+            const rList = /*[[${rList}]]*/ '';
+
+            console.log(rList);
+            displayShop(rList);
+
+            // 검색 결과를 화면에 보여주는 함수
+            function displayShop(goods) {
+                console.log("displayShop start");
+                var resultsList = document.getElementById("resultsList");
+                resultsList.innerHTML = ""; // 이전 결과 초기화
+
+                console.log(goods);
+
+                goods.forEach(function(item) {
+                    var div = document.createElement("div");
+                    div.className = "col-lg-4 col-sm-6";
+                    div.innerHTML = `
+                    <div class="single_product_item">
+                        <div class="goodsImage">
+                            <img src="${item.image}" alt="">
+                        </div>
+                        <div class="single_product_text">
+                            <h4>${item.shopName}</h4>
+                            <a onclick="goShop(${item.shopNumber})" class="add_cart">상점 보러가기<i class="ti-heart"></i></a>
+                        </div>
+                    </div>
+                `;
+                    resultsList.appendChild(div);
+                });
+
+            }
+        });
+    </script>
+    <script type="text/javascript">
+        //상세보기 이동
+        function goShop(shopNumber) {
+            location.href = "/customer/shop?shopNumber=" + shopNumber;
+        }
+    </script>
+    <script th:inline="javascript">
+            const rList = /*[[${rList}]]*/ '';
+
+            console.log(rList);
+
+            // 검색 기능 구현
+            function searchShop() {
+                var searchInput = document.getElementById("searchInput").value.toLowerCase();
+                var filteredGoods = rList.filter(function(item) {
+                    return item.shopName.toLowerCase().includes(searchInput);
+                });
+                console.log(filteredGoods);
+                displayShop(filteredGoods);
+            }
+
+            // 검색 결과를 화면에 보여주는 함수
+            function displayShop(goods) {
+                console.log("displayShop start");
+                var resultsList = document.getElementById("resultsList");
+                resultsList.innerHTML = ""; // 이전 결과 초기화
+
+                console.log(goods);
+
+                goods.forEach(function(item) {
+                    var div = document.createElement("div");
+                    div.className = "col-lg-4 col-sm-6";
+                    div.innerHTML = `
+                    <div class="single_product_item">
+                        <div class="goodsImage">
+                            <img src="${item.image}" alt="">
+                        </div>
+                        <div class="single_product_text">
+                            <h4>${item.shopName}</h4>
+                            <a onclick="goGoods(${item.shopNumber})" class="add_cart">상점 보러가기<i class="ti-heart"></i></a>
+                        </div>
+                    </div>
+                `;
+                    resultsList.appendChild(div);
+                });
+
+            }
+    </script>
+</head>
+
+<body>
+<!--::header part start::-->
+<header class="main_menu home_menu">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-12">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="navbar-brand" href="/customer/customerIndex"><img src="/assets/images/bird/logo2.png" alt="logo" style="width: 100px" , height="50px"></a>
+                </nav>
+            </div>
+        </div>
+    </div>
+</header>
+<!-- Header part end-->
+
+<!-- breadcrumb start-->
+<section class="breadcrumb" style="background-color: azure">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8">
+                <div class="breadcrumb_iner">
+                    <img src="/assets/images/bird/bird1.png" style="width: 400px">
+                    <div class="breadcrumb_iner_item">
+                        <h2>[[${marketName}]]</h2>
+                        <p>수많은 상점들을 구경하세요!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- breadcrumb end-->
+
+<!-- navigation -->
+<div th:replace="customerNav.html"></div>
+<!-- ---------- -->
+
+<!--================Category Product Area =================-->
+<section class="cat_product_area section_padding">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-9">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="product_top_bar d-flex justify-content-between align-items-center">
+                            <div class="single_product_menu">
+                                <p><span>[[${shopCount}]] </span> 상점 개수</p>
+                            </div>
+                            <div class="single_product_menu d-flex">
+                                <h5>상점 유형 : </h5>
+                                <select>
+                                    <option data-display="전체">과일</option>
+                                    <option value="1">의류</option>
+                                    <option value="2">기타</option>
+                                </select>
+                            </div>
+                            <div class="single_product_menu d-flex">
+                                <div class="input-group">
+                                    <input type="text" id="searchInput" class="form-control" placeholder="상점 검색"
+                                           aria-describedby="inputGroupPrepend" oninput="searchShop()">
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text" id="inputGroupPrepend"><i class="ti-search"></i></span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row align-items-center latest_product_inner">
+                    <div class="row align-items-center latest_product_inner" id="resultsList"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--================End Category Product Area =================-->
+<!-- popper js -->
+<script src="/assets/js/popper.min.js"></script>
+<!-- bootstrap js -->
+<script src="/assets/js/bootstrap.min.js"></script>
+<!-- easing js -->
+<script src="/assets/js/jquery.magnific-popup.js"></script>
+<!-- swiper js -->
+<script src="/assets/js/swiper.min.js"></script>
+<!-- swiper js -->
+<script src="/assets/js/masonry.pkgd.js"></script>
+<!-- particles js -->
+<script src="/assets/js/owl.carousel.min.js"></script>
+<script src="/assets/js/jquery.nice-select.min.js"></script>
+<!-- slick js -->
+<script src="/assets/js/slick.min.js"></script>
+<script src="/assets/js/jquery.counterup.min.js"></script>
+<script src="/assets/js/waypoints.min.js"></script>
+<script src="/assets/js/contact.js"></script>
+<script src="/assets/js/jquery.ajaxchimp.min.js"></script>
+<script src="/assets/js/jquery.form.js"></script>
+<script src="/assets/js/jquery.validate.min.js"></script>
+<script src="/assets/js/mail-script.js"></script>
+<script src="/assets/js/stellar.js"></script>
+<script src="/assets/js/price_rangs.js"></script>
+<!-- custom js -->
+<script src="/assets/js/custom.js"></script>
+</body>
+
+</html>

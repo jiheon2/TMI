@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TMI - 채팅</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../../static/assets/css/bootstrap.css">
+    <link rel="stylesheet" href="../../static/assets/css/font.css">
+    <link rel="stylesheet" href="../../static/assets/vendors/iconly/bold.css">
+
+    <link rel="stylesheet" href="../../static/assets/vendors/perfect-scrollbar/perfect-scrollbar.css">
+    <link rel="stylesheet" href="../../static/assets/vendors/bootstrap-icons/bootstrap-icons.css">
+    <link rel="stylesheet" href="../../static/assets/css/app.css">
+    <link rel="shortcut icon" href="../static/assets/images/favicon.svg" type="image/x-icon">
+</head>
+
+<body>
+    <div id="app">
+         <div id="sidebar" class="active">
+            <div class="sidebar-wrapper active">
+                <div class="sidebar-header">
+                    <div class="d-flex justify-content-between">
+                        <div class="logo">
+                            <a href="traderIndex.html"><img src="../../static/assets/images/logo/logo.png" alt="Logo" srcset=""></a>
+                        </div>
+                        <div class="toggler">
+                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <ul class="menu">
+                        <li class="sidebar-title">MENU</li>
+
+                        <li class="sidebar-item active ">
+                            <a href="traderIndex.html" class='sidebar-link'>
+                                <i class="bi bi-grid-fill"></i>
+                                <span>한눈에 보기</span>
+                            </a>
+                        </li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-stack"></i>
+                                <span>내 상점</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="shopInfo.html">상점 정보</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="traderInfo.html">상인 정보</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item  has-sub">
+                            <a href="#" class='sidebar-link'>
+                                <i class="bi bi-collection-fill"></i>
+                                <span>상품관리</span>
+                            </a>
+                            <ul class="submenu ">
+                                <li class="submenu-item ">
+                                    <a href="goodsMng.html">상품 관리</a>
+                                </li>
+                                <li class="submenu-item ">
+                                    <a href="reviewMng.html">리뷰 관리</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        <li class="sidebar-item  ">
+                            <a href="reservMng.html" class='sidebar-link'>
+                                <i class="bi bi-grid-1x2-fill"></i>
+                                <span>예약관리</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item  ">
+                            <a href="chat.html" class='sidebar-link'>
+                                <i class="bi bi-file-earmark-medical-fill"></i>
+                                <span>채팅</span>
+                            </a>
+                        </li>
+
+
+                        <li class="sidebar-item  ">
+                            <a href="customerService.html" class='sidebar-link'>
+                                <i class="bi bi-grid-1x2-fill"></i>
+                                <span>고객센터</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+            </div>
+        </div>
+
+        <div id="main">
+            <div class="page-heading">
+                <div class="page-title">
+                    <div class="row">
+                        <div class="col-12 col-md-6 order-md-1 order-last">
+                            <div class="page-heading">
+                                <h3>채팅리스트</h3>
+                            </div>
+                        </div>
+                        <div class="col-12 col-md-6 order-md-2 order-first">
+                            <nav aria-label="breadcrumb" class="breadcrumb-header float-start float-lg-end">
+                                <ol class="breadcrumb">
+                                    <li class="breadcrumb-item"><a href="index.html">Dashboard</a></li>
+                                </ol>
+                            </nav>
+                        </div>
+                    </div>
+                </div>
+                <section class="section">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card">
+                                <div class="card-header">
+                                    <div class="divTableHeading">
+                                        <div class="divTableRow">
+                                            <div class="divTableHead">대화가능한 채팅방들</div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="divTableBody">
+                                    <div class="divTableRow">
+                                        <div class="divTableCell" id="room_list"></div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+
+            <!--
+            <div class="page-heading">
+                <h3>채팅리스트</h3>
+            </div>
+            <div class="page-content">
+                <h1>채팅방 전체 리스트</h1>
+                <div class="divTable minimalistBlack">
+                    <div class="divTableHeading">
+                        <div class="divTableRow">
+                            <div class="divTableHead">대화가능한 채팅방들</div>
+                        </div>
+                    </div>
+                    <div class="divTableBody">
+                        <div class="divTableRow">
+                            <div class="divTableCell" id="room_list"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+-->
+
+            <footer>
+                <div class="footer clearfix mb-0 text-muted">
+                    <div class="float-start">
+                        <p>2021 &copy; Mazer</p>
+                    </div>
+                    <div class="float-end">
+                        <p>Crafted with <span class="text-danger"><i class="bi bi-heart"></i></span> by <a href="http://ahmadsaugi.com">A. Saugi</a></p>
+                    </div>
+                </div>
+            </footer>
+        </div>
+    </div>
+    <script src="../../static/assets/vendors/perfect-scrollbar/perfect-scrollbar.min.js"></script>
+    <script src="../../static/assets/js/bootstrap.bundle.min.js"></script>
+
+    <script src="../../static/assets/vendors/apexcharts/apexcharts.js"></script>
+    <script src="../../static/assets/js/pages/dashboard.js"></script>
+
+    <script src="../../static/assets/js/main.js"></script>
+    <script type="text/javascript">
+
+        // HTML로딩이 완료되고, 실행됨
+        $(document).ready(function () {
+
+            //화면 로딩이 완료되면 첫번째로 실행함
+            getRoomList(); //전체 채팅방 리스트 가져오기
+
+            //2번쨰부터 채팅방 전체리스트를 5초마다 로딩함
+            setInterval("getRoomList()", 5000);
+
+        })
+
+        //전체 채팅방 리스트 가져오기
+        function getRoomList() {
+
+            //Ajax 호출
+            $.ajax({
+                url: "/chat/roomList", // 채팅방 정보 가져올 URL
+                type: "post", // 전송방식
+                dataType: "JSON", // 전달받을 데이터 타입
+                success: function (json) {
+
+                    // 기존 데이터 삭제하기
+                    $("#room_list").empty();
+
+                    for (let i = 0; i < json.length; i++) {
+                        $("#room_list").append(json[i] + "<br/>"); // 채팅방마다 한줄씩 추가
+
+                    }
+                }
+            })
+
+        }
+    </script>
+</body></html>
